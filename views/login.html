@@ -1,0 +1,39 @@
+<div class="login-box" ng-controller="LoginCtrl">
+    <div class="login-logo">
+        <a href=""><b>Let Us</b>Tweak</a>
+    </div><!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg">Sign in to start your session</p>
+        <!-- alert message -->
+        <div>
+            <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
+                <span class="{{alert.icone}}"></span>
+                {{alert.msg}}
+            </alert>
+        </div>
+        <form class="form-horizontal" name="userForm" ng-submit="submitFormLogin()" novalidate>
+            <div class="form-group has-feedback" ng-class="{ 'has-error' : signUpForm.username.$invalid && !signUpForm.username.$pristine }">
+                <input ng-keyup="alerts=[]" ng-model="login.username" placeholder="User Name" type="text" name="username" class="form-control" ng-model="user.username" required>
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback"  ng-class="{ 'has-error' : signUpForm.password.$invalid && !signUpForm.password.$pristine }">
+                <input ng-keyup="alerts=[]" ng-model="login.password" placeholder="Password" type="password" name="password" class="form-control" ng-model="user.password" required>
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="checkbox icheck">
+                        <label>
+                            <input type="checkbox"> Remember Me
+                        </label>
+                    </div>
+                </div><!-- /.col -->
+                <div class="col-xs-4">
+                    <button type="submit" ng-click="doLogin(login)"  class="btn btn-primary btn-block btn-flat" ng-disabled="signUpForm.$invalid || loading">Sign In</button>
+                </div><!-- /.col -->
+            </div>
+        </form>
+        <a href="#">I forgot my password</a><br>
+        <a href="#/signUp" class="text-center">Register a new membership</a>
+    </div><!-- /.login-box-body -->
+</div><!-- /.login-box -->
